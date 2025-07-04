@@ -37,3 +37,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/Telegram-Service/src/main/resources/application-test.properties
