@@ -1,0 +1,39 @@
+
+
+spring:
+  serverno:
+    ${telegram.serverno}
+  profiles:
+    #运行的环境
+    active: test
+  servlet:
+    multipart:
+      max-file-size: 50MB        # 单个文件大小限制
+      max-request-size: 200MB    # 总请求大小限制（多个文件）
+  kafka:
+    bootstrap-servers: ${telegram.kafka.bootstrap-servers}
+    consumer:
+      group-id: PUSH_MESSAGE_GROUP
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  datasource:
+    url: jdbc:mysql://${cloud.mysql.ip}:${cloud.mysql.port}/${cloud.mysql.db}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: ${cloud.mysql.username}
+    password: ${cloud.mysql.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      # Redis服务器地址
+      host: ${cloud.redis.host}
+      # Redis服务器端口号
+      port: ${cloud.redis.port}
+      # 使用的数据库索引，默认是0
+      database: 0
+      # 连接超时时间
+      timeout: 1800000
+
+
